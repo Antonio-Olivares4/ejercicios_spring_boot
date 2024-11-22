@@ -22,10 +22,10 @@ public class Controlador {
 	
 	
 	@PostMapping("/tablaMultiplicar")
-	public String ejercicio2(@RequestParam int numeromul) {
+	public String ejercicio2(@RequestParam int numero) {
 		String nMultiplicar="";
 		for(int i =0; i<=10; i++) {
-			nMultiplicar="" + numeromul*i;
+			nMultiplicar+="<h3>" + numero*i + "</h3>";
 		}
 		
 		return nMultiplicar;
