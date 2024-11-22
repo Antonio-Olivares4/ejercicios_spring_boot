@@ -18,25 +18,41 @@ public class Controlador {
 		}
 		return ret;
 	}
+
 //Ejercicio 2.
 	@PostMapping("/tablaMultiplicar")
 	public String ejercicio2(@RequestParam int numero) {
 		String nMultiplicar = "";
 		for (int i = 1; i <= 10; i++) {
-			nMultiplicar += "<h3>" + numero * i + "</h3>";
+			nMultiplicar += "<h3>" + numero + " x " + i + " = " + numero * i + "</h3>";
 		}
 
 		return nMultiplicar;
 	}
 
 //Ejercicio 3.
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@PostMapping("/promedioCalificaciones")
+	public String calcularPromedio(@RequestParam String calificaciones) {
+	    try {
+	        // Convierte las calificaciones en un array de números.
+	        String[] calificacionesArray = calificaciones.split(",");
+	        double suma = 0;
+	        for (String calificacion : calificacionesArray) {
+	            suma += Double.parseDouble(calificacion.trim());
+	        }
+
+	        // Calculo el promedio
+	        double promedio = suma / calificacionesArray.length;
+
+	   
+	        String resultado = promedio >= 5 ? "Aprobado" : "Suspenso";
+
+	       
+	        return "<h2>Promedio: " + promedio + "</h2>" +
+	               "<h2>Estado: " + resultado + "</h2>";
+	    } catch (Exception e) {
+	        return "<h3 style='color: red;'>Error: Asegúrate de ingresar números válidos separados por comas.</h3>";
+	    }
+	}
+
 }
